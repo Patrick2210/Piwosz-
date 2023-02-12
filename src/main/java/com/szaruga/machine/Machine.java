@@ -13,25 +13,18 @@ public class Machine {
     }
 
     private boolean isGlass(Glass insert) {
-        boolean isGlass = false;
-        if (insert == null) {
-            System.out.println(MyStrings.STRINGS_CHAMBER_INSERT_GLASS.string);
-        } else {
-            isGlass = true;
-        }
-        return isGlass;
+        return insert != null;
     }
 
     private double checkGlassCapacity(Glass insert) {
-        boolean isGlass = isGlass(insert);
-        double capacityGlass = 0;
-        if (isGlass) {
-            capacityGlass = insert.getCapacityGlass();
+        if (isGlass(insert)) {
             System.out.println(MyStrings.STRINGS_CHAMBER_GLASS_IN.string);
+            return insert.getCapacityGlass();
         } else {
-            System.out.println(MyStrings.STRINGS_CHAMBER_WRONG.string);
+            System.out.println(MyStrings.STRINGS_CHAMBER_INSERT_GLASS.string
+                    + MyStrings.STRINGS_CHAMBER_WRONG.string);
         }
-        return capacityGlass;
+        return 0;
     }
 
     private double checkBarrelCapacity(double barrel) {
@@ -54,7 +47,8 @@ public class Machine {
             } else if (barrel == barrelTwo) {
                 barrelTwo -= capacityGlass;
             }
-            System.out.println(MyStrings.STRINGS_FILL_MACHINE.string + capacityGlass + MyStrings.STRINGS_FILL_YES.string);
+            System.out.println(MyStrings.STRINGS_FILL_MACHINE.string + capacityGlass
+                    + MyStrings.STRINGS_FILL_YES.string);
         }
         if (checkBarrelCapacity < 0.3 || capacityGlass > checkBarrelCapacity) {
             System.out.println(MyStrings.STRINGS_BARREL_ASK.string);
